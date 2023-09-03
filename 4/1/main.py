@@ -8,9 +8,7 @@ def read_file(filename):
     return BeautifulSoup(html_doc, features="lxml")
 
 
-
-
-soup = read_file('cat.html')
+soup = read_file('books.html')
 articles = soup.find_all('article', class_ ='product_pod')
 
 data = []
