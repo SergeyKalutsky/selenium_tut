@@ -30,7 +30,6 @@ def cook_soup(driver):
     return BeautifulSoup(driver.page_source, features="lxml")
 
 driver = webdriver.Chrome()
-url = 'https://vse-shutochki.ru/anekdoty'
 aneks = {}
 for category, url in data:
     driver.get(url)
