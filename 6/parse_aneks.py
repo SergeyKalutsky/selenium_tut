@@ -6,6 +6,7 @@ with open('aneks.html', 'r', encoding='utf-8') as f:
 
 aneks_list = []
 posts = soup.find_all('div', class_='post noSidePadding')
-for post in posts[:-2]:
+for post in posts:
     if post.div:
         aneks_list.append(post.div.text.strip())
+    print(aneks_list)
