@@ -1,11 +1,12 @@
 import os
+from random import sample
 from PIL import Image
 import hashlib
 
-images_path = '../8/hot_dogs'
-files = os.listdir(images_path)
+images_path = 'not_hot_dogs'
+files = sample(os.listdir(images_path), 628)
 hashes = []
-size = (224, 224)
+size = (564, 564)
 resized_folder = images_path + f'_resized{size[0]}x{size[1]}'
 if not os.path.exists(resized_folder):
     os.mkdir(resized_folder)
@@ -20,8 +21,14 @@ for filename in files:
     hashes.append(hash)
 
 for filename in files:
+    if filename.split('.')[-1] not in ('jpg', 'png', 'jpeg'):
+        print('Игнорируем')
+        continue
     if not os.path.exists(f'{resized_folder}/{filename}'):
-        img = Image.open(f'{images_path}/{filename}')
+        try:
+            img = Image.open(f'{images_path}/{filename}')
+        except FileNotFoundError:
+            print('Не смог найти файл')
         img = img.resize(size)
         try:
             img.save(f'{resized_folder}/{filename}')

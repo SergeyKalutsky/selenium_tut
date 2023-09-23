@@ -22,14 +22,7 @@ def download_image(src, folder):
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(options=chrome_options)
-searches = [
-            # 'хот-дог', 
-            # 'вкусный хот-дог', 
-            # 'сосиска с хлебом и кетчупом', 
-            # 'европейский хот-дог',
-            'hot dogs',
-            'sosige',
-            'plain hot dog']
+searches = ['покушать', 'космос', 'абстракция']
 
 for search in searches:
     q = urllib.parse.quote_plus(search)
@@ -46,12 +39,12 @@ for search in searches:
                 driver.get(href) 
             break
     sleep(3)
-    for i in range(200):
+    for i in range(100):
         img_xpath = '//div[@role="main"]//img[@tabindex]'
         img = driver.find_element('xpath', img_xpath)
         src = img.get_attribute('src')
         try:
-            download_image(src, 'hot_dogs')
+            download_image(src, 'not_hot_dogs')
         except Exception as e:
             print(e)
         sleep(1)
